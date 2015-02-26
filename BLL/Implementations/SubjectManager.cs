@@ -1,4 +1,5 @@
 ﻿using DBModels;
+using BLL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DAL
+namespace BLL.Implementations
 {
     public class SubjectManager
     {
         private UnivrsityContext context;
         private bool disposed = false;
 
-        public SubjectManager(UnivrsityContext context)
+     /*   public SubjectManager(UnivrsityContext context)
         {
             this.context = context;
-        }
+        }*/
 
         public IEnumerable<SubjectDTO> GetSubjects()
         {
@@ -39,43 +40,22 @@ namespace DAL
         public void InsertSubject(Subject subject)
         {
             context.Subjects.Add(subject);
-            Save();
+           // Save();
         }
 
         public void DeleteSubject(int subjectId)
         {
             Subject subject = context.Subjects.Find(subjectId);
             context.Subjects.Remove(subject);
-            Save();
+           // Save();
         }
 
         public void UpdateSubject(Subject subject)
         {
             context.Entry(subject).State = EntityState.Modified;
-            Save();
+            //Save();
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+       
     }
 }

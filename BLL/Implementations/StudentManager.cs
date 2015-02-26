@@ -1,5 +1,5 @@
-﻿
-using DBModels;
+﻿using DBModels;
+using BLL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL.Implementations
 {
-    public class StudentManager: IStudentManager, IDisposable
+    public class StudentManager
     {
 
         private UnivrsityContext context;
         private bool disposed = false;
 
-        public StudentManager(UnivrsityContext context)
+       /* public StudentManager(UnivrsityContext context)
         {
             this.context = context;
-        }
+        }*/
 
         public IEnumerable<StudentDTO> GetStudents()
         {
@@ -41,43 +41,23 @@ namespace DAL
         public void InsertStudent(Student student)
         {
             context.Students.Add(student);
-            Save();
+            ///Save();
         }
 
         public void DeleteStudent(int studentId)
         {
             Student student = context.Students.Find(studentId);
             context.Students.Remove(student);
-            Save();
+//Save();
         }
 
         public void UpdateStudent(Student student)
         {
             context.Entry(student).State = EntityState.Modified;
-            Save();
+            //Save();
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+      
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL;
+using BLL.Implementations;
 using DBModels;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ namespace University1Entity
 {
     public partial class Form1 : Form
     {
-        UnitOfWokr uOW = new UnitOfWokr();
+        UnitOfWork uOW = new UnitOfWork();
+        GroupManager gr;
+
         
         public Form1()
         {
             InitializeComponent();
+            gr = new GroupManager(uOW);
         }
 
         public DataTable toDataTable<T>(List<T> data)
@@ -65,34 +69,35 @@ namespace University1Entity
         {
             cmbStudGroup.ValueMember = "Id";
             cmbStudGroup.DisplayMember = "Name";
-            cmbStudGroup.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+         //   cmbStudGroup.DataSource = toDataTable(uOW.gr    GroupManager.GetGroups().ToList());
 
         }
         void setcmbGrSbjGroup()
         {
             cmbGrSbjGroup.ValueMember = "Id";
             cmbGrSbjGroup.DisplayMember = "Name";
-            cmbGrSbjGroup.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+           // cmbGrSbjGroup.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
         }
         void setcmbGrSbjSubject()
         {
             cmbGrSbjSubject.ValueMember = "Id";
             cmbGrSbjSubject.DisplayMember = "Name";
-            cmbGrSbjSubject.DataSource = toDataTable(uOW.SubjectManager.GetSubjects().ToList());
+          //  cmbGrSbjSubject.DataSource = toDataTable(uOW.SubjectManager.GetSubjects().ToList());
         }
 
         private void btnAllGroups_Click(object sender, EventArgs e)
         {
-            grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+          //  grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+            grdGroups.DataSource = gr.GetGroups().ToList();
         }
         private void btnSubj_Click(object sender, EventArgs e)
         {
-            grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
+           // grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
 
         }
         private void btnGrSubj_Click(object sender, EventArgs e)
         {
-            grdGroupSubj.DataSource = toDataTable(uOW.GroupSubjectManager.GetGroupSubject().ToList());
+       //     grdGroupSubj.DataSource = toDataTable(uOW.GroupSubjectManager.GetGroupSubject().ToList());
             grdGroupSubj.Columns[0].Visible = false;
             grdGroupSubj.Columns[1].Visible = false;
             setcmbGrSbjGroup();
@@ -100,7 +105,7 @@ namespace University1Entity
         }
         private void btnStud_Click(object sender, EventArgs e)
         {
-            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();
+          //  grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();
             setcmbStudGroup();
         }
         
@@ -111,8 +116,8 @@ namespace University1Entity
             {
                 return;
             }
-            uOW.GroupManager.InsertGroup(new Group() { Name = txtGroup.Text.Trim() });
-            grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+         //   uOW.GroupManager.InsertGroup(new Group() { Name = txtGroup.Text.Trim() });
+          //  grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
             setcmbStudGroup();
             setcmbGrSbjGroup();
         }
@@ -123,49 +128,49 @@ namespace University1Entity
             {
                 return;
             }
-            uOW.SubjectManager.InsertSubject(new Subject { Name = txtSubject.Text.Trim() });
-            grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
+       //     uOW.SubjectManager.InsertSubject(new Subject { Name = txtSubject.Text.Trim() });
+            //grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
             setcmbGrSbjSubject();
         }
         private void btnAddStud_Click(object sender, EventArgs e)
         {
-            bool isValid = txtFieldNotEmpty(txtStudFName, lblStudFName)  && txtFieldNotEmpty(txtStudAge, lblStudAge) && 
+           /* bool isValid = txtFieldNotEmpty(txtStudFName, lblStudFName)  && txtFieldNotEmpty(txtStudAge, lblStudAge) && 
                            txtFieldIsInt32(txtStudAge, lblStudAge) && cmbFieldNotEmpty(cmbStudGroup, lblStudGroup) &&
                            cmbValueMemeberIsInt32(cmbStudGroup.SelectedValue.ToString(), lblStudGroup);
             if (!isValid)
             {
                 return;
             }
-            uOW.StudentManager.InsertStudent(new Student {
+           uOW.StudentManager.InsertStudent(new Student {
                 Name = txtStudFName.Text.Trim(),
                 Age =  Convert.ToInt32(txtStudAge.Text.Trim()),
                 GroupId = Convert.ToInt32(cmbStudGroup.SelectedValue)
 
             });
-            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();
+       //     grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();*/
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            bool isValid = cmbFieldNotEmpty(cmbGrSbjGroup, lblGrSbjGroup) && cmbFieldNotEmpty(cmbGrSbjSubject, lblGrSbjSubject) &&
+           /* bool isValid = cmbFieldNotEmpty(cmbGrSbjGroup, lblGrSbjGroup) && cmbFieldNotEmpty(cmbGrSbjSubject, lblGrSbjSubject) &&
                  cmbValueMemeberIsInt32(cmbGrSbjGroup.SelectedValue.ToString(), lblGrSbjGroup) && 
                  cmbValueMemeberIsInt32(cmbGrSbjSubject.SelectedValue.ToString(), lblGrSbjSubject);
             if (!isValid)
             {
                 return;
             }
-            uOW.GroupSubjectManager.InsertGroupSubject(new GroupSubject
+           uOW.GroupSubjectManager.InsertGroupSubject(new GroupSubject
             {
                 GroupId = Convert.ToInt32(cmbGrSbjGroup.SelectedValue),
                 SubjectId = Convert.ToInt32(cmbGrSbjSubject.SelectedValue)
             });
             grdGroupSubj.DataSource = toDataTable(uOW.GroupSubjectManager.GetGroupSubject().ToList());
             grdGroupSubj.Columns[0].Visible = false;
-            grdGroupSubj.Columns[1].Visible = false;
+            grdGroupSubj.Columns[1].Visible = false;*/
         }
 
         private void btnGrUpdate_Click(object sender, EventArgs e)
         {
-            bool isValid = txtFieldNotEmpty(txtGroup, lblGroup);
+          /*  bool isValid = txtFieldNotEmpty(txtGroup, lblGroup);
             if ((grdGroups.DataSource == null) || !isValid)
             {
                 return;
@@ -177,11 +182,11 @@ namespace University1Entity
             });
             grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
             setcmbStudGroup();
-            setcmbGrSbjGroup();
+            setcmbGrSbjGroup();*/
         }
         private void btnSubjUpdate_Click(object sender, EventArgs e)
         {
-            bool isValid = txtFieldNotEmpty(txtSubject, lblSubject);
+         /*   bool isValid = txtFieldNotEmpty(txtSubject, lblSubject);
             if ((grdSubjects.DataSource == null) || !isValid)
             {
                 return;
@@ -192,11 +197,11 @@ namespace University1Entity
                 Name = txtSubject.Text.Trim()
             });
             grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
-            setcmbGrSbjSubject();
+            setcmbGrSbjSubject();*/
         }
         private void btnStudUpdate_Click(object sender, EventArgs e)
         {
-            bool isValid = txtFieldNotEmpty(txtStudFName, lblStudFName) && txtFieldNotEmpty(txtStudAge, lblStudAge) &&
+          /*  bool isValid = txtFieldNotEmpty(txtStudFName, lblStudFName) && txtFieldNotEmpty(txtStudAge, lblStudAge) &&
                            txtFieldIsInt32(txtStudAge, lblStudAge) && cmbFieldNotEmpty(cmbStudGroup, lblStudGroup) &&
                            cmbValueMemeberIsInt32(cmbStudGroup.SelectedValue.ToString(), lblStudGroup);
             if ((grdStudents.DataSource == null) || !isValid)
@@ -210,12 +215,12 @@ namespace University1Entity
                 Age = Convert.ToInt32(txtStudAge.Text.Trim()),
                 GroupId = Convert.ToInt32(cmbStudGroup.SelectedValue)
             });
-            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();
+            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();*/
         }
 
         private void btnGrDel_Click(object sender, EventArgs e)
         {
-            int curRowId = Convert.ToInt32(grdGroups.CurrentRow.Cells[0].Value);
+          /*  int curRowId = Convert.ToInt32(grdGroups.CurrentRow.Cells[0].Value);
             if (grdGroups.DataSource == null)
             {
                 return;
@@ -223,32 +228,32 @@ namespace University1Entity
             uOW.GroupManager.DeleteGroup(curRowId);
             grdGroups.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
             setcmbStudGroup();
-            setcmbGrSbjGroup();
+            setcmbGrSbjGroup();/*/
         }
         private void btnSubjDelete_Click(object sender, EventArgs e)
         {
-            int curRowId = Convert.ToInt32(grdSubjects.CurrentRow.Cells[0].Value);
+         /*   int curRowId = Convert.ToInt32(grdSubjects.CurrentRow.Cells[0].Value);
             if (grdSubjects.DataSource == null)
             {
                 return; 
             }
             uOW.SubjectManager.DeleteSubject(curRowId);
             grdSubjects.DataSource = uOW.SubjectManager.GetSubjects().ToList();
-            setcmbGrSbjSubject();
+            setcmbGrSbjSubject();*/
         }
         private void btnStudDelete_Click(object sender, EventArgs e)
         {
-            int curRowId = Convert.ToInt32(grdStudents.CurrentRow.Cells[0].Value);
+           /* int curRowId = Convert.ToInt32(grdStudents.CurrentRow.Cells[0].Value);
             if (grdStudents.DataSource == null)
             {
                 return; 
             }
             uOW.StudentManager.DeleteStudent(curRowId);
-            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();
+            grdStudents.DataSource = uOW.StudentManager.GetStudents().ToList();*/
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            int curGrId = Convert.ToInt32(grdGroupSubj.CurrentRow.Cells[0].Value);
+        /*    int curGrId = Convert.ToInt32(grdGroupSubj.CurrentRow.Cells[0].Value);
             int curSubId = Convert.ToInt32(grdGroupSubj.CurrentRow.Cells[1].Value);
             if (grdGroupSubj.DataSource == null)
             {
@@ -257,7 +262,7 @@ namespace University1Entity
             uOW.GroupSubjectManager.DeleteGroupSubject(curGrId, curSubId);
             grdGroupSubj.DataSource = toDataTable(uOW.GroupSubjectManager.GetGroupSubject().ToList());
             grdGroupSubj.Columns[0].Visible = false;
-            grdGroupSubj.Columns[1].Visible = false;
+            grdGroupSubj.Columns[1].Visible = false;*/
         }
 
 

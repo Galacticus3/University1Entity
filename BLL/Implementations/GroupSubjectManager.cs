@@ -1,4 +1,5 @@
 ﻿using DBModels;
+using BLL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -7,17 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL.Implementations
 {
     public class GroupSubjectManager
     {
         private UnivrsityContext context;
         private bool disposed = false;
 
-        public GroupSubjectManager(UnivrsityContext context)
+      /*  public GroupSubjectManager(UnivrsityContext context)
         {
             this.context = context;
-        }
+        }*/
 
         public IEnumerable<GroupSubjectDTO> GetGroupSubject()
         {
@@ -42,7 +43,7 @@ namespace DAL
         public void InsertGroupSubject(GroupSubject grsubj)
         {
             context.GroupSubject.Add(grsubj);
-            Save();
+           // Save();
         }
 
         public void DeleteGroupSubject(int groupId, int subjId)
@@ -52,36 +53,15 @@ namespace DAL
                         select row;
 
             context.GroupSubject.Remove(query.FirstOrDefault());
-            Save();
+           // Save();
         }
 
         public void UpdateGroup(GroupSubject grsubj)
         {
             context.Entry(grsubj).State = EntityState.Modified;
-            Save();
+         //   Save();
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        
     }
 }

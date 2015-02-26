@@ -7,7 +7,7 @@
     <ProjectGuid>{AECFC196-C544-48A8-9659-4AE2845F0772}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
+    <RootNamespace>BLL</RootNamespace>
     <AssemblyName>DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -46,20 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GroupManager.cs" />
-    <Compile Include="GroupSubjectManager.cs" />
-    <Compile Include="IGroupManager.cs" />
-    <Compile Include="IGroupSubjectManager.cs" />
-    <Compile Include="UnitOfWokr.cs" />
-    <Compile Include="IStudentManager.cs" />
-    <Compile Include="ISubjectManager.cs" />
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="Migrations\201502241557500_Add all tables in DB.cs" />
     <Compile Include="Migrations\201502241557500_Add all tables in DB.Designer.cs">
       <DependentUpon>201502241557500_Add all tables in DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="StudentManager.cs" />
-    <Compile Include="SubjectManager.cs" />
     <Compile Include="UnivrsityContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

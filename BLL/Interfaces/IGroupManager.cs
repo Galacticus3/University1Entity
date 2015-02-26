@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL.Implementations
 {
-    public interface IGroupManager : IDisposable
+    public interface IGroupManager
     {
         IEnumerable<GroupDTO> GetGroups();
         Group GetGroupByID(int groupId);
