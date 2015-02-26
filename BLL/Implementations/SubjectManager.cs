@@ -11,19 +11,13 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    public class SubjectManager
+    public class SubjectManager : BaseManager
     {
-        private UnivrsityContext context;
-        private bool disposed = false;
-
-     /*   public SubjectManager(UnivrsityContext context)
-        {
-            this.context = context;
-        }*/
+        public SubjectManager(UnitOfWork uof) : base(uof) { }     
 
         public IEnumerable<SubjectDTO> GetSubjects()
         {
-            var list = context.Subjects.Select(s => new SubjectDTO()
+            var list = uof.SubjectRepository.All.Select(s => new SubjectDTO()
             {
                 Id = s.Id,
                 Name = s.Name
@@ -32,28 +26,33 @@ namespace BLL.Implementations
             return list.ToList();
         }
 
-        public Subject GetSubjectByID(int subjectId)
+        public SubjectDTO GetSubjectByID(int subjectId)
         {
-            return context.Subjects.Find(subjectId);
+            var item = uof.SubjectRepository.GetByID(subjectId);
+            return new SubjectDTO()
+            {
+                Id = item.Id,
+                Name = item.Name
+            };
+            
         }
 
         public void InsertSubject(Subject subject)
         {
-            context.Subjects.Add(subject);
-           // Save();
+            uof.SubjectRepository.Insert(subject);
+            uof.Save();
         }
 
         public void DeleteSubject(int subjectId)
         {
-            Subject subject = context.Subjects.Find(subjectId);
-            context.Subjects.Remove(subject);
-           // Save();
+            uof.SubjectRepository.Delete(subjectId);
+            uof.Save();
         }
 
         public void UpdateSubject(Subject subject)
         {
-            context.Entry(subject).State = EntityState.Modified;
-            //Save();
+            uof.SubjectRepository.Update(subject);
+            uof.Save();
         }
 
        

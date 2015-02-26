@@ -10,20 +10,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    public class StudentManager
+    public class StudentManager : BaseManager
     {
 
-        private UnivrsityContext context;
-        private bool disposed = false;
-
-       /* public StudentManager(UnivrsityContext context)
-        {
-            this.context = context;
-        }*/
+        public StudentManager(UnitOfWork uof) : base(uof) { }     
 
         public IEnumerable<StudentDTO> GetStudents()
         {
-            var list = context.Students.Select(s => new StudentDTO()
+            var list = uof.StudentRepository.All.Select(s => new StudentDTO()
             {
                 Id = s.Id,
                 Name = s.Name,
@@ -33,28 +27,35 @@ namespace BLL.Implementations
             return list.ToList();
         }
 
-        public Student GetStudentByID(int studentId)
+        public StudentDTO GetStudentByID(int studentId)
         {
-            return context.Students.Find(studentId);
+            var item = uof.StudentRepository.GetByID(studentId);
+            return new StudentDTO()
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Age = item.Age,
+                GroupName = item.Groups.Name
+            };
+            
         }
 
         public void InsertStudent(Student student)
         {
-            context.Students.Add(student);
-            ///Save();
+            uof.StudentRepository.Insert(student);
+            uof.Save();
         }
 
         public void DeleteStudent(int studentId)
         {
-            Student student = context.Students.Find(studentId);
-            context.Students.Remove(student);
-//Save();
+            uof.StudentRepository.Delete(studentId);
+            uof.Save();
         }
 
         public void UpdateStudent(Student student)
         {
-            context.Entry(student).State = EntityState.Modified;
-            //Save();
+            uof.StudentRepository.Update(student);
+            uof.Save();
         }
 
       
