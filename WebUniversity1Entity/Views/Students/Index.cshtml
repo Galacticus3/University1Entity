@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DTO.StudentDTO>
+
+<div>
+    <h1>Our students</h1>
+    <div>
+        @Html.ActionLink("Add Student", "AddStudent", "Students")
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Age</strong></td>
+                    <td><strong>Group</strong></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var stud in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="hidden" value="@stud.Id" />
+                        </td>
+                        <td>
+                            <span>@stud.Name</span>
+                        </td>
+                        <td>
+                            <span>@stud.Age</span>
+                        </td>
+                        <td>
+                            <span>@stud.GroupName</span>
+                        </td>
+                        <td>
+                            <span> | @Html.ActionLink("Edit", "EditStudent", new { id = stud.Id })</span>
+                        </td>
+                        <td>
+                            <span> | @Html.ActionLink("Delete", "DeleteStudent", new { id = stud.Id })</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

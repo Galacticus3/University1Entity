@@ -75,20 +75,20 @@ namespace University1Entity
         {
             cmbStudGroup.ValueMember = "Id";
             cmbStudGroup.DisplayMember = "Name";
-         //   cmbStudGroup.DataSource = toDataTable(uOW.gr    GroupManager.GetGroups().ToList());
+            cmbStudGroup.DataSource = toDataTable(gr.GetGroups().ToList());
 
         }
         void setcmbGrSbjGroup()
         {
             cmbGrSbjGroup.ValueMember = "Id";
             cmbGrSbjGroup.DisplayMember = "Name";
-           // cmbGrSbjGroup.DataSource = toDataTable(uOW.GroupManager.GetGroups().ToList());
+            cmbGrSbjGroup.DataSource = toDataTable(gr.GetGroups().ToList());
         }
         void setcmbGrSbjSubject()
         {
             cmbGrSbjSubject.ValueMember = "Id";
             cmbGrSbjSubject.DisplayMember = "Name";
-          //  cmbGrSbjSubject.DataSource = toDataTable(uOW.SubjectManager.GetSubjects().ToList());
+            cmbGrSbjSubject.DataSource = toDataTable(sbj.GetSubjects().ToList());
         }
 
         private void btnAllGroups_Click(object sender, EventArgs e)

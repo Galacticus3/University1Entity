@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DTO.GroupDTO>
+
+<div>
+    <h1>Our groups</h1>
+    <div>
+        @Html.ActionLink("Add Group", "AddGroup", "Groups")
+        <table>
+            <thead>
+                <tr>
+                    <td></td><td><strong>Name</strong></td><td></td>
+                </tr>
+            </thead>
+            <tbody>
+             @foreach (var group in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" value="@group.Id" />
+                    </td>
+                    <td>
+                        <span>@group.Name</span>
+                    </td>
+                    <td>
+                        <span> | @Html.ActionLink("Edit", "EditGroup", new { id = group.Id })</span>
+                    </td>
+                    <td>
+                        <span> | @Html.ActionLink("Delete", "DeleteGroup", new { id = group.Id })</span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

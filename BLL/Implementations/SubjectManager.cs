@@ -26,15 +26,9 @@ namespace BLL.Implementations
             return list.ToList();
         }
 
-        public SubjectDTO GetSubjectByID(int subjectId)
+        public Subject GetSubjectByID(int subjectId)
         {
-            var item = uof.SubjectRepository.GetByID(subjectId);
-            return new SubjectDTO()
-            {
-                Id = item.Id,
-                Name = item.Name
-            };
-            
+            return uof.SubjectRepository.GetByID(subjectId);   
         }
 
         public void InsertSubject(Subject subject)

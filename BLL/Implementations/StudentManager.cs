@@ -27,17 +27,9 @@ namespace BLL.Implementations
             return list.ToList();
         }
 
-        public StudentDTO GetStudentByID(int studentId)
+        public Student GetStudentByID(int studentId)
         {
-            var item = uof.StudentRepository.GetByID(studentId);
-            return new StudentDTO()
-            {
-                Id = item.Id,
-                Name = item.Name,
-                Age = item.Age,
-                GroupName = item.Groups.Name
-            };
-            
+            return uof.StudentRepository.GetByID(studentId);
         }
 
         public void InsertStudent(Student student)

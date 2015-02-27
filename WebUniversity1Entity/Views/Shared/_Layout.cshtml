@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - University</title>
+
+</head>
+<body>
+    <h1>University</h1>
+        
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Groups", "Index", "Groups")</li>
+            <li>@Html.ActionLink("Subjects", "Index", "Subjects")</li>
+            <li>@Html.ActionLink("Students", "Index", "Students")</li>
+        </ul>
+    </div>
+    @RenderBody()
+    
+</body>
+</html>
