@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.Implementations;
+using BLL.Interfaces;
 using DBModels;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,13 @@ namespace WebUniversity1Entity.Controllers
 {
     public class GroupsController : Controller
     {
-        public GroupManager groupManager;
-        public GroupSubjectManager groupsubjManager;
+        public IGroupManager groupManager;
+        public IGroupSubjectManager groupsubjManager;
 
-        public GroupsController()
+        public GroupsController(IGroupManager groupManager, IGroupSubjectManager groupsubjManager)
         {
-            UnitOfWork uow = new UnitOfWork();
-            groupManager = new GroupManager(uow);
-            groupsubjManager = new GroupSubjectManager(uow);
+            this.groupManager = groupManager;
+            this.groupsubjManager = groupsubjManager;
         }
 
         // GET: Groups

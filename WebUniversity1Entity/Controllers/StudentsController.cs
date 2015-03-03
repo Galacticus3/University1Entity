@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.Implementations;
+using BLL.Interfaces;
 using DBModels;
 using DTO;
 using System;
@@ -14,14 +15,13 @@ namespace WebUniversity1Entity.Controllers
     
     public class StudentsController : Controller
     {
-        public StudentManager studManager;
-        public GroupManager groupManager;
+        public IStudentManager studManager;
+        public IGroupManager groupManager;
 
-        public StudentsController()
+        public StudentsController(IStudentManager studManager, IGroupManager groupManager)
         {
-            UnitOfWork uow = new UnitOfWork();
-            studManager = new StudentManager(uow);
-            groupManager = new GroupManager(uow);
+            this.studManager = studManager;
+            this.groupManager = groupManager;
         }
 
         // GET: Groups
