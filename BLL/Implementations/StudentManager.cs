@@ -7,10 +7,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Interfaces;
 
 namespace BLL.Implementations
 {
-    public class StudentManager : BaseManager
+    public class StudentManager : BaseManager, IStudentManager
     {
 
         public StudentManager(UnitOfWork uof) : base(uof) { }     

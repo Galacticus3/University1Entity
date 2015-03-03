@@ -7,11 +7,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Interfaces;
 
 
 namespace BLL.Implementations
 {
-    public class SubjectManager : BaseManager
+    public class SubjectManager : BaseManager, ISubjectManager
     {
         public SubjectManager(UnitOfWork uof) : base(uof) { }     
 

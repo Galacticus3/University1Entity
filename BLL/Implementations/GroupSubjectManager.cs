@@ -7,10 +7,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Interfaces;
 
 namespace BLL.Implementations
 {
-    public class GroupSubjectManager : BaseManager
+    public class GroupSubjectManager : BaseManager, IGroupSubjectManager
     {
         public GroupSubjectManager(UnitOfWork uof) : base(uof) { }     
 
