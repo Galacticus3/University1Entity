@@ -84,6 +84,7 @@ namespace BLL
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+
         }
     }
    

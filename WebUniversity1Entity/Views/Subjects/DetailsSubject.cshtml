@@ -1,0 +1,33 @@
+﻿@model WebUniversity1Entity.Models.SubjectGroups
+
+<div>
+    <h4>SubjectGroups</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>*@
+
+    </dl>
+    <h3>Groups wich have @Model.Name subjsect:</h3>
+
+    <div>
+        <ul>
+            @foreach (var gr in Model.Groups)
+            {
+                <li>@gr.Name</li>
+            }
+
+        </ul>
+    </div>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -16,7 +16,8 @@ namespace BLL
         private GenericRepository<Group> groupRep;
         private GenericRepository<Subject> subjRep;
         private GenericRepository<Student> studRep;
-        private GenericRepository<GroupSubject> grsubjRep;
+        //private GenericRepository<GroupSubject> grsubjRep;
+        private GroupSubjectRepository grsubjRep;
 
         public UnitOfWork()
         {
@@ -24,7 +25,7 @@ namespace BLL
             groupRep = new GenericRepository<Group>(context);
             subjRep = new GenericRepository<Subject>(context);
             studRep = new GenericRepository<Student>(context);
-            grsubjRep = new GenericRepository<GroupSubject>(context);
+            grsubjRep = new GroupSubjectRepository(context);
         }
 
         public GenericRepository<Group> GroupRepository
@@ -54,11 +55,11 @@ namespace BLL
             }
         }
 
-        public GenericRepository<GroupSubject> GroupSubjectRepository
+        public GroupSubjectRepository GroupSubjectRepository
         {
             get
             {
-                if (grsubjRep == null) grsubjRep = new GenericRepository<GroupSubject>(context);
+                if (grsubjRep == null) grsubjRep = new GroupSubjectRepository(context);
                 return grsubjRep;
             }
         }

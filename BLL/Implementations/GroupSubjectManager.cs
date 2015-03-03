@@ -10,58 +10,36 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    public class GroupSubjectManager
+    public class GroupSubjectManager : BaseManager
     {
-        private UnivrsityContext context;
-        private bool disposed = false;
+        public GroupSubjectManager(UnitOfWork uof) : base(uof) { }     
 
-      /*  public GroupSubjectManager(UnivrsityContext context)
-        {
-            this.context = context;
-        }*/
-
-        public IEnumerable<GroupSubjectDTO> GetGroupSubject()
-        {
-            var list = context.GroupSubject.Select(s => new GroupSubjectDTO()
-            {
-                GrId = s.GroupId,
-                SbjId = s.SubjectId,
-                GroupName = s.Groups.Name,
-                SubjectName = s.Subject.Name
-            });
-
-            return list.ToList();
-        }
-        
-        public GroupSubject GetGroupByID(int groupId)
-        {
-          
-            return context.GroupSubject.Find(groupId);
-        }
-    
 
         public void InsertGroupSubject(GroupSubject grsubj)
         {
-            context.GroupSubject.Add(grsubj);
-           // Save();
+            uof.GroupSubjectRepository.Insert(grsubj);
+            uof.Save();
         }
 
         public void DeleteGroupSubject(int groupId, int subjId)
         {
-            var query = from row in context.GroupSubject                                           
-                        where row.GroupId  == groupId && row.SubjectId == subjId
-                        select row;
-
-            context.GroupSubject.Remove(query.FirstOrDefault());
-           // Save();
+            uof.GroupSubjectRepository.Delete(groupId, subjId);
+            uof.Save();
         }
 
-        public void UpdateGroup(GroupSubject grsubj)
+        public IEnumerable<SubjectDTO> GetSubjectsByGroupID(int groupId)
         {
-            context.Entry(grsubj).State = EntityState.Modified;
-         //   Save();
+
+            return uof.GroupSubjectRepository.SubjectsByGroupID(groupId);
         }
 
+        public IEnumerable<GroupDTO> GetGroupsBySubjectID(int subjId)
+        {
+
+            return uof.GroupSubjectRepository.GroupsBySubjectID(subjId);
+        }  
+
+       
         
     }
 }

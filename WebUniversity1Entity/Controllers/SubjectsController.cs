@@ -6,22 +6,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUniversity1Entity.Models;
 
 namespace WebUniversity1Entity.Controllers
 {
     public class SubjectsController : Controller
     {
-        public SubjectManager mnsbj;
+        public SubjectManager subjectManager;
+        public GroupSubjectManager groupsubjManager;
 
         public SubjectsController()
         {
-            mnsbj = new SubjectManager(new UnitOfWork());
+            UnitOfWork uow = new UnitOfWork();
+            subjectManager = new SubjectManager(uow);
+            groupsubjManager = new GroupSubjectManager(uow);
         }
 
         // GET: Groups
         public ActionResult Index()
         {
-            var subjects = mnsbj.GetSubjects();
+            var subjects = subjectManager.GetSubjects();
             return View(subjects);
         }
 
@@ -33,14 +37,14 @@ namespace WebUniversity1Entity.Controllers
         [HttpPost]
         public ActionResult AddSubject(Subject subject)
         {
-            mnsbj.InsertSubject(subject);
+            subjectManager.InsertSubject(subject);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult EditSubject(int id)
         {
-            Subject subject = mnsbj.GetSubjectByID(id);
+            Subject subject = subjectManager.GetSubjectByID(id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -52,7 +56,7 @@ namespace WebUniversity1Entity.Controllers
         {
             if (ModelState.IsValid)
             {
-                mnsbj.UpdateSubject(subject);
+                subjectManager.UpdateSubject(subject);
                 return RedirectToAction("Index");
             }
             return View(subject);
@@ -61,7 +65,7 @@ namespace WebUniversity1Entity.Controllers
         [HttpGet]
         public ActionResult DeleteSubject(int id)
         {
-            Subject subject = mnsbj.GetSubjectByID(id);
+            Subject subject = subjectManager.GetSubjectByID(id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -72,8 +76,29 @@ namespace WebUniversity1Entity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            mnsbj.DeleteSubject(id);
+            subjectManager.DeleteSubject(id);
             return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult DetailsSubject(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Subject subject = subjectManager.GetSubjectByID(id.Value);
+            if (subject == null)
+            {
+                return HttpNotFound();
+            }
+            SubjectGroups group = new SubjectGroups();
+            group.Id = id.Value;
+            group.Name = subject.Name;
+            group.Groups = groupsubjManager.GetGroupsBySubjectID(id.Value);
+            return View(group);
         }
     }
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
+    <Compile Include="GroupSubjectRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Migrations\201502241557500_Add all tables in DB.cs" />
     <Compile Include="Migrations\201502241557500_Add all tables in DB.Designer.cs">

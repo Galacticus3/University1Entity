@@ -19,4 +19,6 @@ namespace DBModels
         [ForeignKey("GroupId")]
         public virtual Group Groups { get; set; }
     }
+
+
 }

@@ -19,8 +19,9 @@ namespace WebUniversity1Entity.Controllers
 
         public StudentsController()
         {
-            studManager = new StudentManager(new UnitOfWork());
-            groupManager = new GroupManager(new UnitOfWork());
+            UnitOfWork uow = new UnitOfWork();
+            studManager = new StudentManager(uow);
+            groupManager = new GroupManager(uow);
         }
 
         // GET: Groups
