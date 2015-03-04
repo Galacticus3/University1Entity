@@ -1,6 +1,11 @@
-﻿@model IEnumerable<DTO.StudentDTO>
+﻿
+@model WebUniversity1Entity.Models.StudentGroupsAdd
+
+@*IEnumerable<DTO.StudentDTO>*@
+
 
 <div>
+   
     <h1>Our students</h1>
     <div>
         @Html.ActionLink("Add Student", "AddStudent", "Students")
@@ -14,8 +19,8 @@
                     <td></td>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var stud in Model)
+            <tbody id="studentsList">
+                @foreach (var stud in Model.Students)
                 {
                     <tr>
                         <td>
@@ -40,6 +45,21 @@
                 }
             </tbody>
         </table>
+        <br>
+        Name 
+        <input type="text" id="studentName">
+        Age 
+        <input type="number" id="studentAge">
+        Group 
+        <select name="GroupId" class="form-control">
+            @foreach (var group in Model.Groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
+        </select>
+         <input type="button" id="AjaxAddStudent" value="Add student"/>
+        
+       
     </div>
 </div>
-
+@Scripts.Render("~/Scripts/Add-student.js")

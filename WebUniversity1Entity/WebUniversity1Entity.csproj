@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="Models\GroupSubjects.cs" />
     <Compile Include="Models\StudentGroups.cs" />
+    <Compile Include="Models\StudentGroupsAdd.cs" />
     <Compile Include="Models\SubjectGroups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -147,6 +148,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Add-student.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

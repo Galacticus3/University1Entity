@@ -27,8 +27,12 @@ namespace WebUniversity1Entity.Controllers
         // GET: Groups
         public ActionResult Index()
         {
-            var students = studManager.GetStudents();
-            return View(students);
+            //var students = studManager.GetStudents();
+
+            var model = new StudentGroupsAdd();
+            model.Students = studManager.GetStudents();
+            model.Groups = groupManager.GetGroups().ToList(); 
+            return View(model);
         }
 
 
@@ -44,7 +48,19 @@ namespace WebUniversity1Entity.Controllers
         {
             studManager.InsertStudent(student);
             return RedirectToAction("Index");
+            
         }
+
+        [HttpPost]
+        public ActionResult AjaxAddStudent(Student student)
+        {
+            studManager.InsertStudent(student);
+
+            var model = new StudentGroupsAdd();
+            model.Students = studManager.GetStudents();
+            return Json(model.Students);
+        }
+        
 
 
         [HttpGet]
