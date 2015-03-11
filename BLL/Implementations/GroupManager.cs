@@ -19,7 +19,7 @@ namespace BLL.Implementations
         
        public IEnumerable<GroupDTO> GetGroups()
         {
-            var list = uof.GroupRepository.All.Select(s => new GroupDTO()
+           var list = uof.GroupRepository.All.Select(s => new GroupDTO()
             {
                 Id = s.Id,
                 Name = s.Name

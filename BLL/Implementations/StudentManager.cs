@@ -24,8 +24,14 @@ namespace BLL.Implementations
                 Name = s.Name,
                 Age = s.Age,
                 GroupName = s.Groups.Name
+                
             });
             return list.ToList();
+        }
+
+        public IEnumerable<Student> GetStudentsGroupId()
+        {
+            return uof.StudentRepository.Get();
         }
 
         public Student GetStudentByID(int studentId)

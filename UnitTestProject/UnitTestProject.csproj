@@ -60,6 +60,7 @@
     <Compile Include="TestCRUDSubject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCRUDGroup.cs" />
+    <Compile Include="TestCRUDStudent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
