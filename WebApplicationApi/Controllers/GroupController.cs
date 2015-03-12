@@ -24,13 +24,60 @@ namespace WebApplicationApi.Controllers
         [HttpGet]
         public IEnumerable<GroupDTO> GetGroupsApi()
         {
-            return groupManager.GetGroups();
+            IEnumerable<GroupDTO> groups = null;
+            try
+            {
+                groups = groupManager.GetGroups();
+            } 
+            catch(Exception ex) 
+            {
+                this.Request.CreateResponse(HttpStatusCode.InternalServerError, ex.ToString());
+            }
+
+            return groups;
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertGroupApi(Group group)
+        {
+            try
+            {
+                groupManager.InsertGroup(group);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.ToString());
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [HttpPut]
-        public void InsertGroupApi(Group group)
+        public HttpResponseMessage UpdateGroupApi(Group group)
         {
-            groupManager.InsertGroup(group);
+            try
+            {
+                groupManager.UpdateGroup(group);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.ToString());
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [HttpDelete]
+        public HttpResponseMessage DeleteGroupApi(int id)
+        {
+            try
+            {
+                groupManager.DeleteGroup(id);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.ToString());
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
     }
 }
