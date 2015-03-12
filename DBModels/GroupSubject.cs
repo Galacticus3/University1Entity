@@ -18,6 +18,6 @@ namespace DBModels
         [ForeignKey("GroupId")]
         public virtual Group Groups { get; set; }
         [ForeignKey("SubjectId")]
-        public virtual Subject Subject { get; set; }
+        public virtual Subject Subjects { get; set; }
     }
 }

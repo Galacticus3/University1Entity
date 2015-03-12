@@ -5,7 +5,7 @@ namespace BLL.Interfaces
     {
         void DeleteSubject(int subjectId);
         DBModels.Subject GetSubjectByID(int subjectId);
-        System.Collections.Generic.IEnumerable<DTO.SubjectDTO> GetSubjects();
+        System.Collections.Generic.IEnumerable<DBModels.DTO.SubjectDTO> GetSubjects();
         void InsertSubject(DBModels.Subject subject);
         void UpdateSubject(DBModels.Subject subject); 
     }

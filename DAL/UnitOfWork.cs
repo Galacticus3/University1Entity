@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace DAL
 {
     public class UnitOfWork
     {
@@ -18,6 +18,8 @@ namespace BLL
         private GenericRepository<Student> studRep;
         //private GenericRepository<GroupSubject> grsubjRep;
         private GroupSubjectRepository grsubjRep;
+        private GenericRepository<User> userRep;
+        private GenericRepository<Role> roleRep;
 
         public UnitOfWork()
         {
@@ -26,6 +28,8 @@ namespace BLL
             subjRep = new GenericRepository<Subject>(context);
             studRep = new GenericRepository<Student>(context);
             grsubjRep = new GroupSubjectRepository(context);
+            userRep = new GenericRepository<User>(context);
+            roleRep = new GenericRepository<Role>(context);
         }
 
         public GenericRepository<Group> GroupRepository
@@ -61,6 +65,24 @@ namespace BLL
             {
                 if (grsubjRep == null) grsubjRep = new GroupSubjectRepository(context);
                 return grsubjRep;
+            }
+        }
+
+        public GenericRepository<User> UserRepository
+        {
+            get
+            {
+                if (userRep == null) userRep = new GenericRepository<User>(context);
+                return userRep;
+            }
+        }
+
+        public GenericRepository<Role> RoleRepository
+        {
+            get
+            {
+                if (roleRep == null) roleRep = new GenericRepository<Role>(context);
+                return roleRep;
             }
         }
 

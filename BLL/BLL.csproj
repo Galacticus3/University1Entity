@@ -49,12 +49,16 @@
     <Compile Include="Implementations\BaseManager.cs" />
     <Compile Include="Implementations\GroupManager.cs" />
     <Compile Include="Implementations\GroupSubjectManager.cs" />
+    <Compile Include="Implementations\RoleManager.cs" />
+    <Compile Include="Implementations\UserManager.cs" />
+    <Compile Include="Interfaces\IRoleManager.cs" />
     <Compile Include="Interfaces\ISubjectManager.cs" />
     <Compile Include="Interfaces\IStudentManager.cs" />
     <Compile Include="Implementations\StudentManager.cs" />
     <Compile Include="Implementations\SubjectManager.cs" />
     <Compile Include="Interfaces\IGroupManager.cs" />
     <Compile Include="Interfaces\IGroupSubjectManager.cs" />
+    <Compile Include="Interfaces\IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

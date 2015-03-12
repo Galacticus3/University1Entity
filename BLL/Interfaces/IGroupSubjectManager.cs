@@ -1,5 +1,5 @@
 ﻿using DBModels;
-using DTO;
+using DBModels.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

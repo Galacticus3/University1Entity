@@ -7,13 +7,13 @@ namespace BLL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class AddalltablesinDB : IMigrationMetadata
+    public sealed partial class Addalltables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddalltablesinDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Addalltables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201502241557500_Add all tables in DB"; }
+            get { return "201503121320112_Add all tables"; }
         }
         
         string IMigrationMetadata.Source

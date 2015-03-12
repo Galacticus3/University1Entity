@@ -1,5 +1,5 @@
 ﻿using DBModels;
-using DTO;
+using DBModels.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace DAL
 {
     public class GroupSubjectRepository
     {
@@ -37,7 +37,7 @@ namespace BLL
         {
             var list = context.GroupSubject.Where(s => s.GroupId == groupId).Select(s => new SubjectDTO()
             {
-                Name = s.Subject.Name
+                Name = s.Subjects.Name
             });
             return list.ToList();
         }

@@ -48,11 +48,11 @@
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
     <Compile Include="GroupSubjectRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
-    <Compile Include="Migrations\201502241557500_Add all tables in DB.cs" />
-    <Compile Include="Migrations\201502241557500_Add all tables in DB.Designer.cs">
-      <DependentUpon>201502241557500_Add all tables in DB.cs</DependentUpon>
+    <Compile Include="Migrations\201503121320112_Add all tables.cs" />
+    <Compile Include="Migrations\201503121320112_Add all tables.Designer.cs">
+      <DependentUpon>201503121320112_Add all tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UnivrsityContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502241557500_Add all tables in DB.resx">
-      <DependentUpon>201502241557500_Add all tables in DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503121320112_Add all tables.resx">
+      <DependentUpon>201503121320112_Add all tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

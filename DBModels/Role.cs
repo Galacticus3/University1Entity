@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBModels
 {
-    class Role
+    public class Role
     {
         [Key]
         public int Id { get; set; }

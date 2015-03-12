@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace DBModels.DTO
 {
-    public class StudentDTO
+    public class RoleDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Age{ get; set; }
-        public string GroupName { get; set; }
-
+        public string Description { get; set; }
     }
 }
