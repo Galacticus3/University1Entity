@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    class RoleManager : BaseManager, IRoleManager
+    public class RoleManager : BaseManager, IRoleManager
     {
        public RoleManager(UnitOfWork uof) : base(uof) { }     
         

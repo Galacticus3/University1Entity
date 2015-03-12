@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    class UserManager : BaseManager, IUserManager
+    public class UserManager : BaseManager, IUserManager
     {
         public UserManager(UnitOfWork uof) : base(uof) { }     
         
@@ -28,6 +28,17 @@ namespace BLL.Implementations
             return list.ToList();
         }
 
+       public User GetUserByUserName(string userName, string password)
+       {
+           var item = uof.UserRepository.Get().Where(s => s.UserName == userName && s.Password == password).FirstOrDefault();
+
+           if (item != null)
+           {
+               return item;
+           }
+           return item;
+       }
+        
         public User GetUserByID(int userId)
         {
             return uof.UserRepository.GetByID(userId);

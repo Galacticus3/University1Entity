@@ -8,6 +8,7 @@ namespace BLL.Interfaces
 {
     public interface IUserManager
     {
+        DBModels.User GetUserByUserName(string userName, string password);
         DBModels.User GetUserByID(int userId);
         System.Collections.Generic.IEnumerable<DBModels.DTO.UserDTO> GetUsers();
         //System.Collections.Generic.IEnumerable<DBModels.Student> GetStudentsGroupId();

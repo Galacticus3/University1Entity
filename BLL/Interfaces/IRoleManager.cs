@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    interface IRoleManager
+    public interface IRoleManager
     {
         IEnumerable<DBModels.DTO.RoleDTO> GetRoles();
         Role GetRoleByID(int roleId);

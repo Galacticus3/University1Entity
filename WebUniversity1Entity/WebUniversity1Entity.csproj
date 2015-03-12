@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\GroupSubjectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -160,6 +161,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Auth\ChangePassword.cs" />
+    <Compile Include="Models\Auth\ChangeProfile.cs" />
+    <Compile Include="Models\Auth\Login.cs" />
+    <Compile Include="Models\Auth\Register.cs" />
     <Compile Include="Models\GroupSubjects.cs" />
     <Compile Include="Models\StudentGroups.cs" />
     <Compile Include="Models\StudentGroupsAdd.cs" />
@@ -217,6 +222,8 @@
     <Content Include="Views\Students\DeleteStudent.cshtml" />
     <Content Include="Views\Groups\DetailsGroup.cshtml" />
     <Content Include="Views\Subjects\DetailsSubject.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Authed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

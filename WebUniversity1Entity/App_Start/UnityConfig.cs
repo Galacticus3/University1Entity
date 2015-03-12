@@ -25,6 +25,8 @@ namespace WebUniversity1Entity
             container.RegisterType<IGroupSubjectManager, GroupSubjectManager>();
             container.RegisterType<IStudentManager, StudentManager>();
             container.RegisterType<ISubjectManager, SubjectManager>();
+            container.RegisterType<IUserManager, UserManager>();
+            container.RegisterType<IRoleManager, RoleManager>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
 
